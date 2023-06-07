@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { loadData } from './store/dataReducer';
+import { BrowserRouter } from 'react-router-dom';
+import NavBar from './components/NavBar/NavBar';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -11,10 +13,10 @@ const App = () => {
 
   const data = useSelector(state => state.data.entries)
 
-  console.log(data)
-
   return (
-    <h1>Hello from App</h1>
+    <BrowserRouter>
+      <NavBar />
+    </BrowserRouter>
   );
 };
 
