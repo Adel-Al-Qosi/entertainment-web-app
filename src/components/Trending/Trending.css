@@ -1,3 +1,7 @@
+.trending {
+    margin-right: 2rem;
+}
+
 .trending-motion {
     cursor: grab;
     overflow: hidden;
@@ -10,7 +14,7 @@
 }
 
 .trending-image {
-    min-height: 20rem;
+    min-height: 15rem;
     min-width: 33rem;
 }
 

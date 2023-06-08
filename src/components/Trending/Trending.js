@@ -12,8 +12,11 @@ function Trending() {
   const trendingMotion = useRef();
 
   useEffect(() => {
-    setWidth(trendingMotion.current.scrollWidth - 68)
-    // trendingMotion.current.offsetWidth
+    setWidth(trendingMotion.current.scrollWidth - trendingMotion.current.offsetWidth)
+    console.log(trendingMotion.current.scrollWidth - trendingMotion.current.offsetWidth)
+    console.log(trendingMotion.current.offsetWidth)
+    console.log(trendingMotion.current.offsetWidth)
+    
   }, [])
 
   useEffect(() => {
