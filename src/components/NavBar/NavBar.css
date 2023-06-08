@@ -51,7 +51,7 @@ svg {
   }
 }
 
-@media (min-width: 45em) {
+@media (min-width: 55em) {
   header {
     display: grid;
     justify-content: space-between;
@@ -59,6 +59,7 @@ svg {
     top: 2rem;
     left: 2rem;
     height: calc(100% - 4rem);
+    min-height: 40rem;
     width: 6rem;
     margin: 0;
     padding: 0;

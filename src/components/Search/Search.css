@@ -1,0 +1,30 @@
+.search {
+  display: flex;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.search-btn {
+  aspect-ratio: 1;
+  background-repeat: no-repeat;
+  width: 2rem;
+  background-color: var(--clr-background);
+  background-image: url(../../assets/icon-search.svg);
+  border: 0;
+  cursor: pointer;
+}
+
+.search-text:focus {
+  color: var(--clr-secondary-100);
+  border: 0;
+  border-bottom: 1px solid var(--clr-secondary-500);
+  outline: none;
+}
+
+.search-text {
+  background-color: var(--clr-background);
+  border: 0;
+  margin-left: 1rem;
+  width: 91%;
+  caret-color: var(--clr-primary);
+}
