@@ -2,6 +2,13 @@ main {
     margin: 1rem;
 }
 
+@media (min-width: 35em) {
+    main {
+        margin: 1.5rem;
+        padding-top: 3rem;
+    }
+}
+
 @media (min-width: 55em) {
     main {
         margin: 0 0 0 10rem;

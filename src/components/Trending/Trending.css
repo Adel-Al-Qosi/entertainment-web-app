@@ -1,7 +1,3 @@
-.trending {
-    margin-right: 2rem;
-}
-
 .trending-motion {
     cursor: grab;
     overflow: hidden;
@@ -13,14 +9,138 @@
     gap: 2rem;
 }
 
-.trending-image {
-    min-height: 15rem;
-    min-width: 33rem;
+.trending-card {
+    height: 13rem;
+    min-width: 24rem;
+    background-size: cover;
+    border-radius: .5rem;
+    padding: 1rem;
+    display: grid;
+    grid-template: repeat(5, 1fr) / repeat(5, 1fr);
+    grid-template-areas: 
+    '. . . . mark'
+    '. . . . .'
+    '. . . . .'
+    'description description description . .'
+    'title title title title .';
+    position: relative;
+    cursor: pointer;
 }
 
-.trending-image img {
+.card-description {
+    grid-area: description;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    opacity: .5;
+}
+
+.card-description img {
+    width: 1.5rem;
+}
+
+.card-description *:nth-child(2):before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background-color: var(--clr-secondary-100);
+    border-radius: 50%;
+    margin-right: .9rem;
+}
+
+.card-description *:nth-child(2):after {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background-color: var(--clr-secondary-100);
+    border-radius: 50%;
+    margin-left: .5rem;
+}
+
+.card-title {
+    grid-area: title;
+}
+
+.card-mark-full,
+.card-mark-empty {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 1.3rem;
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--clr-background);
+    border-radius: 50%;
+    grid-area: mark;
+    opacity: .7;
+    place-self: end;
+}
+
+.card-mark-empty {
+    background-image: url(../../assets/icon-bookmark-empty.svg);
+}
+
+.card-mark-full {
+    background-image: url(../../assets/icon-bookmark-full.svg);
+}
+
+.card-play {
+    background-color: rgba(36, 33, 33, 0.534);
     width: 100%;
     height: 100%;
-    border-radius: .5rem;
+    position: absolute;
+    display: none;
+}
+
+.trending-card:hover .card-play {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.inner-card-play {
+    background-color: rgba(228, 227, 227, 0.37);
+    width: 7rem;
+    height: 3rem;
+    border-radius: 5rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-around;
+    align-items: center;
+    padding-right: 1rem;
+    padding-left: .3rem;
+}
+
+.inner-card-play img {
     pointer-events: none;
+}
+
+@media (min-width: 55em) {
+    .trending {
+        margin-right: 1.5rem;
+    }
+    
+    .trending-motion {
+        cursor: grab;
+        overflow: hidden;
+        margin-top: 1rem;
+    }
+    
+    .inner-trending-motion {
+        display: flex;
+        gap: 2rem;
+    }
+    
+    .trending-card {
+        min-height: 15rem;
+        min-width: 33rem;
+        grid-template: repeat(5, 1fr) / repeat(6, 1fr);
+        grid-template-areas: 
+        '. . . . . mark'
+        '. . . . . .'
+        '. . . . . .'
+        'description description description . . .'
+        'title title title title . .';
+        position: relative;
+    }
 }
