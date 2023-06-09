@@ -86,7 +86,7 @@ function Trending() {
               )}
               <div className="card-play">
                 <div className="inner-card-play">
-                  <img src={playIcon} />
+                  <img src={playIcon} alt="play" />
                   <p>Play</p>
                 </div>
               </div>

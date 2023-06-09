@@ -2,6 +2,7 @@
     cursor: grab;
     overflow: hidden;
     margin-top: 1rem;
+    margin-bottom: 2rem;
 }
 
 .inner-trending-motion {
@@ -115,11 +116,7 @@
     pointer-events: none;
 }
 
-@media (min-width: 55em) {
-    .trending {
-        margin-right: 1.5rem;
-    }
-    
+@media (min-width: 55em) { 
     .trending-motion {
         cursor: grab;
         overflow: hidden;
