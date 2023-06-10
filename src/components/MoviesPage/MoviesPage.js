@@ -8,7 +8,7 @@ function MoviesPage() {
   return (
     <main>
       <Search
-       placeholder="Search for"
+       placeholder="Search for movies"
        query={query}
        setQuery={setQuery} 
        />

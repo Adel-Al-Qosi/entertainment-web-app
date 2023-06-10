@@ -8,7 +8,7 @@ function TVPage() {
   return (
     <main>
       <Search
-       placeholder="Search for"
+       placeholder="Search for TV series"
        query={query}
        setQuery={setQuery} 
        />

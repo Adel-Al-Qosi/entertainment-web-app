@@ -9,7 +9,7 @@ function MainPage() {
   return (
     <main>
       <Search
-       placeholder="Search for"
+       placeholder="Search for movies and TV series"
        query={query}
        setQuery={setQuery} 
        />
