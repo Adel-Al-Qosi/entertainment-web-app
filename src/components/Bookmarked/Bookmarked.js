@@ -1,31 +1,31 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./Recommended.css";
-import movieIcon from '../../assets/icon-nav-movies.svg'
-import playIcon from '../../assets/icon-play.svg'
-import TVIcon from '../../assets/icon-nav-tv-series.svg'
+import "./Bookmarked.css";
+import TVIcon from "../../assets/icon-nav-tv-series.svg";
+import movieIcon from '../../assets/icon-category-movie.svg'
+import playIcon from "../../assets/icon-play.svg";
 import { changeMark } from "../../store/dataReducer";
 
-function Recommended({query}) {
+function Bookmarked({query}) {
   const data = useSelector((state) => state.data.entries);
-  let cards = data.filter((item) => item.isTrending === false);
+  let cards = data.filter((item) => item.isBookmarked === true);
+
   if (query) {
     cards = cards.filter(card => card.title.toLowerCase().includes(query.toLowerCase()))
   }
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleChangeMark = (title) => {
-    dispatch(changeMark(title))
-  }
+    dispatch(changeMark(title));
+  };
 
   return (
     <>
-      <h1>Recommended for you</h1>
+      <h1>TV series</h1>
       <div className="recommended-container">
         {cards.map((card, index) => (
           <div className="card-container">
-            
             <div
               key={index}
               className="recommended-card"
@@ -34,9 +34,15 @@ function Recommended({query}) {
               }}
             >
               {card.isBookmarked ? (
-                <div onClick={() => handleChangeMark(card.title)} className="card-full"></div>
+                <div
+                  onClick={() => handleChangeMark(card.title)}
+                  className="card-full"
+                ></div>
               ) : (
-                <div onClick={() => handleChangeMark(card.title)} className="card-empty"></div>
+                <div
+                  onClick={() => handleChangeMark(card.title)}
+                  className="card-empty"
+                ></div>
               )}
               <div className="card-play">
                 <div className="inner-card-play">
@@ -49,7 +55,12 @@ function Recommended({query}) {
               <div className="card-description-re">
                 <p>{card.year}</p>
                 <p className="flex">
-                  {card.category === 'Movie' ? <img src={movieIcon} alt="item" /> : <img src={TVIcon} alt="item" />} {card.category}
+                  {card.category === "Movie" ? (
+                    <img src={movieIcon} alt="item" />
+                  ) : (
+                    <img src={TVIcon} alt="item" />
+                  )}{" "}
+                  {card.category}
                 </p>
                 <p>{card.rating}</p>
               </div>
@@ -62,4 +73,4 @@ function Recommended({query}) {
   );
 }
 
-export default Recommended;
+export default Bookmarked;

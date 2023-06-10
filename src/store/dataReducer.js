@@ -1,6 +1,14 @@
 import data from "../data/data.json";
 
 const LOAD_DATA = "data/loadData";
+const CHANGE_MARK = "Change-mark";
+
+export const changeMark = (title) => {
+  return {
+    type: CHANGE_MARK,
+    title,
+  };
+};
 
 export const loadData = () => {
   return {
@@ -17,6 +25,13 @@ const dataReducer = (state = initialState, action) => {
       return {
         ...state,
         entries: [...action.data],
+      };
+    case CHANGE_MARK:
+      return {
+        ...state,
+        entries: state.entries.map((item) =>
+          item.title === action.title ? { ...item, isBookmarked: !item.isBookmarked } : item
+        ),
       };
     default:
       return state;

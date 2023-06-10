@@ -1,14 +1,14 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./Recommended.css";
+import "./Movies.css";
 import movieIcon from '../../assets/icon-nav-movies.svg'
 import playIcon from '../../assets/icon-play.svg'
-import TVIcon from '../../assets/icon-nav-tv-series.svg'
 import { changeMark } from "../../store/dataReducer";
 
-function Recommended({query}) {
+function Movies({query}) {
   const data = useSelector((state) => state.data.entries);
-  let cards = data.filter((item) => item.isTrending === false);
+  let cards = data.filter((item) => item.category === 'Movie');
+
   if (query) {
     cards = cards.filter(card => card.title.toLowerCase().includes(query.toLowerCase()))
   }
@@ -21,7 +21,7 @@ function Recommended({query}) {
 
   return (
     <>
-      <h1>Recommended for you</h1>
+      <h1>Movies</h1>
       <div className="recommended-container">
         {cards.map((card, index) => (
           <div className="card-container">
@@ -49,7 +49,7 @@ function Recommended({query}) {
               <div className="card-description-re">
                 <p>{card.year}</p>
                 <p className="flex">
-                  {card.category === 'Movie' ? <img src={movieIcon} alt="item" /> : <img src={TVIcon} alt="item" />} {card.category}
+                  <img src={movieIcon} alt="item" /> {card.category}
                 </p>
                 <p>{card.rating}</p>
               </div>
@@ -62,4 +62,4 @@ function Recommended({query}) {
   );
 }
 
-export default Recommended;
+export default Movies;

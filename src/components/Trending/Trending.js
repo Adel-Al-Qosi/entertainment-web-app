@@ -1,9 +1,11 @@
 import React, { useState, useRef, useLayoutEffect } from "react";
 import "./Trending.css";
 import { motion } from "framer-motion";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import movieIcon from "../../assets/icon-category-movie.svg";
-import playIcon from '../../assets/icon-play.svg'
+import TVIcon from "../../assets/icon-nav-tv-series.svg";
+import playIcon from "../../assets/icon-play.svg";
+import { changeMark } from "../../store/dataReducer";
 
 function Trending() {
   const data = useSelector((state) => state.data.entries);
@@ -52,6 +54,12 @@ function Trending() {
     generateCards();
   }, [data]);
 
+  const dispatch = useDispatch();
+
+  const handleChangeMark = (title) => {
+    dispatch(changeMark(title));
+  };
+
   return (
     <div className="trending">
       <h1>Trending</h1>
@@ -75,14 +83,25 @@ function Trending() {
               <div className="card-description">
                 <p>{card.description.year}</p>
                 <p className="flex">
-                  <img src={movieIcon} alt="item" /> {card.description.category}
+                  {card.description.category === "Movie" ? (
+                    <img src={movieIcon} alt="item" />
+                  ) : (
+                    <img src={TVIcon} alt="item" />
+                  )}{" "}
+                  {card.description.category}
                 </p>
                 <p>{card.description.rating}</p>
               </div>
               {card.isMarked ? (
-                <div className="card-mark-full"></div>
+                <div
+                  onClick={() => handleChangeMark(card.title)}
+                  className="card-mark-full"
+                ></div>
               ) : (
-                <div className="card-mark-empty"></div>
+                <div
+                  onClick={() => handleChangeMark(card.title)}
+                  className="card-mark-empty"
+                ></div>
               )}
               <div className="card-play">
                 <div className="inner-card-play">

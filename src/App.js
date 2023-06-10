@@ -1,9 +1,12 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loadData } from "./store/dataReducer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
 import MainPage from './components/MainPage/MainPage'
+import MoviesPage from "./components/MoviesPage/MoviesPage";
+import TVPage from "./components/TVPage/TVPage";
+import BookmarkedPage from "./components/BookmarkedPage/BookmarkedPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -12,13 +15,15 @@ const App = () => {
     dispatch(loadData());
   }, [dispatch]);
 
-  const data = useSelector((state) => state.data.entries);
 
   return (
     <BrowserRouter>
       <NavBar />
       <Routes>
         <Route path="/" element={<MainPage />} />
+        <Route path="/movies" element={<MoviesPage />} />
+        <Route path="/TV-series" element={<TVPage />} />
+        <Route path="bookmarked" element={<BookmarkedPage />} />
       </Routes>
     </BrowserRouter>
   );

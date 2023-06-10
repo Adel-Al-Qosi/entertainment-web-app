@@ -4,6 +4,45 @@
   justify-content: center;
   grid-template-columns: 1fr 1fr;
   margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.recommended-card {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.card-full,
+.card-empty {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 1.3rem;
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--clr-background);
+    border-radius: 50%;
+    opacity: .5;
+    z-index: 1000;
+}
+
+.card-empty {
+    background-image: url(../../assets/icon-bookmark-empty.svg);
+}
+
+.card-full {
+    background-image: url(../../assets/icon-bookmark-full.svg);
+}
+
+.recommended-card:hover .card-play {
+    display: flex;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
 }
 
 @media (min-width: 35em) {
