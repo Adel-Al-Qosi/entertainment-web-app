@@ -22,6 +22,7 @@
 }
 
 .search-text {
+  color: var(--clr-secondary-100);
   background-color: var(--clr-background);
   border: 0;
   margin-left: 1rem;

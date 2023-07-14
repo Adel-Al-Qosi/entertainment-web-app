@@ -1,33 +1,65 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./Bookmarked.css";
-import TVIcon from "../../assets/icon-nav-tv-series.svg";
-import movieIcon from '../../assets/icon-category-movie.svg'
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import { changeMark, filterData, loadData } from "../../store/dataReducer";
+import movieIcon from "../../assets/icon-nav-movies.svg";
 import playIcon from "../../assets/icon-play.svg";
-import { changeMark } from "../../store/dataReducer";
+import TVIcon from "../../assets/icon-nav-tv-series.svg";
+import "./Main.css";
 
-function Bookmarked({query}) {
-  const data = useSelector((state) => state.data.entries);
-  let cards = data.filter((item) => item.isBookmarked === true);
-
-  if (query) {
-    cards = cards.filter(card => card.title.toLowerCase().includes(query.toLowerCase()))
-  }
-
+function Main({ query, locatedIn, setLocatedIn }) {
   const dispatch = useDispatch();
+  const url = useLocation().pathname;
+
+  useEffect(() => {
+    dispatch(loadData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(filterData(url));
+  }, [dispatch, url]);
+
+  let data = useSelector((state) => state.data.entries);
 
   const handleChangeMark = (title) => {
     dispatch(changeMark(title));
   };
 
+  let cards;
+
+  if (locatedIn === "main") cards = data.filter((item) => !item.isTrending);
+  else cards = data;
+
+  console.log(cards);
+
+  if (query)
+    cards = cards.filter((card) =>
+      card.title.toLowerCase().includes(query.toLowerCase())
+    );
+
+  if (url === "/") setLocatedIn("main");
+  else if (url === "/movies") setLocatedIn("movies");
+  else if (url === "/TV-series") setLocatedIn("TV-series");
+  else if (url === "/bookmarked") setLocatedIn("bookmarked");
+
   return (
     <>
-      <h1>TV series</h1>
+      <h1>
+        {
+          query ? `Found ${cards.length} results for ${query}`
+          : locatedIn === "main"
+          ? "Recommended for you"
+          : locatedIn === "movies"
+          ? "Movies"
+          : locatedIn === "TV-series"
+          ? "TV Series"
+          : "Bookmarked"
+          }
+      </h1>
       <div className="recommended-container">
         {cards.map((card, index) => (
-          <div className="card-container">
+          <div className="card-container" key={index}>
             <div
-              key={index}
               className="recommended-card"
               style={{
                 backgroundImage: `url(${card.thumbnail.regular.large})`,
@@ -73,4 +105,4 @@ function Bookmarked({query}) {
   );
 }
 
-export default Bookmarked;
+export default Main;
