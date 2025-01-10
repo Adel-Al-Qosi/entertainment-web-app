@@ -59,7 +59,7 @@ svg {
     top: 2rem;
     left: 2rem;
     height: calc(100% - 4rem);
-    min-height: 40rem;
+    min-height: 90%;
     width: 6rem;
     margin: 0;
     padding: 0;
